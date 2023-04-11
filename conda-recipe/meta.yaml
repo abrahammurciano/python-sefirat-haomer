@@ -1,0 +1,27 @@
+package:
+  name: sefirat-haomer
+  version: "{{ POETRY_VERSION }}"
+
+source:
+  path: ".."
+
+requirements:
+  build:
+    - python >=3.9
+    - pip
+    - poetry
+
+  run:
+    - python >=3.9
+
+build:
+  script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed ."
+  noarch: python
+
+about:
+  home: https://github.com/abrahammurciano/python-sefirat-haomer
+  license: GPLv3
+  summary: "A library for calculating the days of Sefirat HaOmer."
+  description: "A library for calculating the days of Sefirat HaOmer."
+  dev_url: https://github.com/abrahammurciano/python-sefirat-haomer
+  doc_url: https://abrahammurciano.github.io/python-sefirat-haomer/sefirat-haomer

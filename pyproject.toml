@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "sefirat-haomer"
+# Version is overwritten at build time by CI based on git tag
+version = "0"
+description = "A library for calculating the days of Sefirat HaOmer."
+authors = ["Abaham Murciano <abrahammurciano@gmail.com>"]
+license = "GPLv3"
+readme = "README.md"
+repository = "https://github.com/abrahammurciano/python-sefirat-haomer"
+documentation = "https://abrahammurciano.github.io/python-sefirat-haomer/sefirat-haomer"
+keywords = []
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+black = "*"
+pdoc3 = "*"
+toml = "*"
+types-toml = "*"
+mypy = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+exclude = [".venv", "venv"]

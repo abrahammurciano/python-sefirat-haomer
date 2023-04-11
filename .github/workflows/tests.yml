@@ -1,0 +1,23 @@
+
+
+name: Tests
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Get Poetry
+        uses: abatilo/actions-poetry@v2.1.3
+      - name: Install
+        run: poetry install
+      - name: Run Tests
+        run: poetry run pytest tests/
