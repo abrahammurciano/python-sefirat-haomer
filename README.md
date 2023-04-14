@@ -1,130 +1,3 @@
-# Python Package Template
-
-This repository contains the basic structure for a python package as well as some useful GitHub actions for maintaining the package.
-
-In order to use this template you must perform the following steps. In each step I will explain how you can do it manually and I will also provide commands (sorry windows users, sucks to suck) to automate the process where possible.
-
-## 1. Set command variables
-
-In the following instructions, commands will make reference to several variables. You can set these variables now so you can run all subsequent commands without having to edit them. (Replace `...` with actual values.)
-
-```sh
-PACKAGE_NAME="..." # The name of your package. Use kebab-case.
-MODULE_NAME=$(echo $PACKAGE_NAME | tr - _) # The name of your module. Should be the package name in snake_case.
-PACKAGE_DESCRIPTION="..." # A short description of your package
-YOUR_NAME="..." # Your name. Use spaces and start each word with an uppercase letter
-YOUR_EMAIL="..." # Your email address
-GITHUB_USERNAME="..." # Your GitHub username
-ANACONDA_USERNAME="..." # Your Anaconda username
-MIN_PYTHON_VERSION="..." # The minimum version of Python required to use this package
-```
-
-If you won't be using the commands below, just make a note of the values you would give to each variable for when they're needed.
-
-## 2. Clone the template
-
-Download the code and place it in a folder, then enter the folder. From now on all commands will be relative to this folder.
-
-```sh
-git clone https://github.com/abrahammurciano/python-package-template.git python-$PACKAGE_NAME
-cd python-$PACKAGE_NAME
-rm -rf .git
-```
-
-## 3. Replace placeholder text
-
-There are several placeholders that you must replace with values from step 1. These match this regular expression: `<<[A-Z_]+>>`. You can use your IDE to find all such placeholders and replace them, or you can use the following commands to do the same.
-
-```sh
-find ./ -type f -exec sed -i -e "s/sefirat-haomer/$PACKAGE_NAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/sefirat_haomer/$MODULE_NAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/A library for calculating the days of Sefirat HaOmer./$PACKAGE_DESCRIPTION/g" {} \;
-find ./ -type f -exec sed -i -e "s/Abaham Murciano/$YOUR_NAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/abrahammurciano@gmail.com/$YOUR_EMAIL/g" {} \;
-find ./ -type f -exec sed -i -e "s/abrahammurciano/$GITHUB_USERNAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/abrahammurciano/$ANACONDA_USERNAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/3.9/$MIN_PYTHON_VERSION/g" {} \;
-```
-
-Also don't forget to replace any occurences of a placeholder in folder and file names.
-
-```sh
-mv 'sefirat_haomer' $MODULE_NAME
-```
-
-## 4. Create a GitHub repository
-
-- Click [here](https://github.com/new) to create a new GitHub repository.
-- Name it `python-$PACKAGE_NAME`.
-- Enter the value of `$PACKAGE_DESCRIPTION` as the description.
-- Don't initialize the repository with a readme, a .gitignore, a license, or any other files.
-
-## 5. Store the necessary credentials
-
-- Create a [PyPI](https://pypi.org/account/register/) account if you don't have one.
-- Create an [Anaconda](https://anaconda.org/account/register) account if you don't have one.
-- Create a GitHub personal access token.
-	- Go to `Settings` > `Developer settings` > `Personal access tokens` > `Generate new token`.
-	- Name it `GitHub Actions for $PACKAGE_NAME`.
-	- Set it to not expire.
-	- Select `repo` as the `Scopes` field.
-	- Click `Generate token`.
-	- Copy it for the next step.
-- Go to `your repository` > `Settings` > `Secrets` > `Actions`.
-- Create five new repository secrets:
-	- `PERSONAL_GH_TOKEN`
-	- `PYPI_USERNAME`
-	- `PYPI_PASSWORD`
-	- `ANACONDA_USERNAME`
-	- `ANACONDA_PASSWORD`
-
-## 6. Push your code to GitHub
-
-You can push your code with the following commands.
-
-```sh
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/$GITHUB_USERNAME/python-$PACKAGE_NAME.git
-git push -u origin main
-```
-
-## 7. Enable GitHub pages
-
-- Go to `your repository` > `Settings` > `Pages`.
-- Under `source` select the branch `main`.
-- Then for the folder, instead of `/ (root)` choose `/docs`.
-- Click save.
-
-## 8. Enforce CI on pull requests to main
-
-First you must trigger the flow once so GitHub is aware of its existance.
-
-- Go to `your repository` > `Actions` > `Tests` > `Run Workflow` > `Run Workflow`
-- Go to `your repository` > `Actions` > `Docs & Format` > `Run Workflow` > `Run Workflow`
-
-Now you can require the test flow to run.
-
-- Go to `your repository` > `Settings` > `Branches` > `Add branch protection rule`.
-- For the `Branch name pattern` type `main`.
-- Check `Require status checks to pass before merging`.
-- Type `test`, make sure it comes up in autocomplete, and click it.
-- Type `docs_and_format`, make sure it comes up in autocomplete, and click it.
-- Then click `Save changes`.
-
-## 9. Some notes
-
-- If your minimum python version is less than 3.8, replace `importlib.metadata` with `importlib_metadata` in your `__init__.py` and add it as a dependency.
-```sh
-poetry add importlib_metadata
-```
-
-## 10. Delete these instructions
-
-Remove the text up to here from this file.
-
 # sefirat-haomer
 A library for calculating the days of Sefirat HaOmer.
 
@@ -149,3 +22,150 @@ $ conda install -c abrahammurciano sefirat-haomer
 [![Anaconda - sefirat-haomer](https://img.shields.io/badge/Anaconda-sefirat-haomer-44A833?style=for-the-badge&logo=Anaconda&logoColor=%23FFFFFF)](https://anaconda.org/abrahammurciano/sefirat-haomer)
 
 ## Usage
+
+This library provides three main classes. `OmerDay` which represents a single day (1 to 49) of Sefirat HaOmer (not bound to any particular year), `OmerDate` which represents a day of Sefirat HaOmer in a particular year, and `OmerCalendar` which is a collection of `OmerDate` objects for a particular year.
+
+For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see [expamples/google_calendar.py]. (Interestingly, this is why I wrote this library in the first place.)
+
+### `OmerDay`
+
+Here are some examples of how to use the `OmerDay` class.
+
+```python
+>>> from sefirat_haomer import OmerDay
+>>> day = OmerDay(33)
+```
+
+`OmerDay` objects have the following attributes:
+```python
+>>> day.day
+33
+>>> day.weeks
+4
+>>> day.days
+5
+```
+
+You can also get the day of the week for a given `OmerDay` by unpacking it:
+```python
+>>> weeks, days = day
+>>> weeks
+4
+>>> days
+5
+```
+
+`OmerDay` objects can be converted to integers:
+```python
+>>> int(day)
+33
+```
+
+`OmerDay` objects can also be compared to other `OmerDay` objects:
+```python
+>>> day == OmerDay(33)
+True
+>>> day != OmerDay(33)
+False
+>>> day < OmerDay(45)
+True
+>>> day > OmerDay(45)
+False
+>>> day <= OmerDay(20)
+False
+>>> day >= OmerDay(20)
+True
+```
+
+### `OmerDate`
+
+Here are some examples of how to use the `OmerDate` class.
+
+`OmerDate` objects can be created in any of the following ways. (All the following examples are equivalent.)
+```python
+>>> from sefirat_haomer import OmerDate
+>>> from pyluach.dates import HebrewDate
+>>> from datetime import date
+>>> date = OmerDate(8, hebrew_year=5783)
+>>> date = OmerDate(8, gregorian_year=2023)
+>>> date = OmerDate.from_hebrew(HebrewDate(5783, 1, 23))
+>>> date = OmerDate.from_gregorian(date(2023, 4, 14))
+```
+
+`OmerDate` objects have the following attributes (in addition to those inherited from `OmerDay`):
+```python
+>>> date.hebrew
+HebrewDate(5783, 1, 23)
+>>> date.gregorian
+datetime.date(2023, 4, 14)
+```
+
+`OmerDate` objects can be compared to other `OmerDate` objects:
+```python
+>>> date == OmerDate(8, hebrew_year=5783)
+True
+>>> date != OmerDate(8, hebrew_year=5784)
+True
+>>> date != OmerDate(33, gregorian_year=5783)
+True
+>>> date < OmerDate(33, gregorian_year=5782)
+True
+>>> date > OmerDate(33, gregorian_year=5784)
+True
+>>> date <= OmerDate(33, gregorian_year=5782)
+False
+>>> date >= OmerDate(33, gregorian_year=5784)
+False
+```
+
+### `OmerCalendar`
+
+Here are some examples of how to use the `OmerCalendar` class.
+
+`OmerCalendar` objects can be created in any of the following ways. (All the following examples are equivalent.)
+
+```python
+>>> from sefirat_haomer import OmerCalendar
+>>> calendar = OmerCalendar(hebrew_year=5783)
+>>> calendar = OmerCalendar(gregorian_year=2023)
+```
+
+`OmerCalendar` objects have the following attributes:
+```python
+>>> calendar.hebrew_year
+5783
+>>> calendar.gregorian_year
+2023
+```
+
+`OmerCalendar` objects can be indexed just like a list:
+```python
+>>> calendar[0]
+OmerDate(1, hebrew_year=5783)
+>>> calendar[48]
+OmerDate(49, hebrew_year=5783)
+>>> calendar[-1]
+OmerDate(49, hebrew_year=5783)
+>>> calendar[:2]
+[OmerDate(1, hebrew_year=5783), OmerDate(2, hebrew_year=5783)]
+>>> calendar[2:5]
+[OmerDate(3, hebrew_year=5783), OmerDate(4, hebrew_year=5783), OmerDate(5, hebrew_year=5783)]
+>>> calendar[46:]
+[OmerDate(47, hebrew_year=5783), OmerDate(48, hebrew_year=5783), OmerDate(49, hebrew_year=5783)]
+>>> calendar[5:10:2]
+[OmerDate(6, hebrew_year=5783), OmerDate(8, hebrew_year=5783), OmerDate(10, hebrew_year=5783)]
+```
+
+`OmerCalendar` objects can be iterated over:
+```python
+>>> for day in calendar:
+...     print(day)
+```
+
+`OmerCalendar` objects can also tell you if a given `OmerDate` is in the calendar:
+```python
+>>> OmerDate(1, hebrew_year=5783) in calendar
+True
+>>> OmerDate(1, hebrew_year=5784) in calendar
+False
+```
