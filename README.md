@@ -25,7 +25,7 @@ $ conda install -c abrahammurciano sefirat-haomer
 
 This library provides three main classes. `OmerDay` which represents a single day (1 to 49) of Sefirat HaOmer (not bound to any particular year), `OmerDate` which represents a day of Sefirat HaOmer in a particular year, and `OmerCalendar` which is a collection of `OmerDate` objects for a particular year.
 
-For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see [expamples/google_calendar.py]. (Interestingly, this is why I wrote this library in the first place.)
+For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see [this example](expamples/google_calendar.py). (Interestingly, this is why I wrote this library in the first place.)
 
 ### `OmerDay`
 
