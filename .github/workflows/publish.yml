@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: Get Poetry
-        uses: abatilo/actions-poetry@v2.3.0
+        run: pip install poetry
       - name: Set Version
         run: poetry version $(echo ${{ github.event.release.tag_name }} | cut -d 'v' -f 2)
       - name: Build Package
