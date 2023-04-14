@@ -46,9 +46,7 @@ jobs:
         run: echo ::set-output name=commits::$(git log @{upstream}.. --oneline | wc -l)
       - name: Push changes
         if: steps.git-check.outputs.commits != '0'
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_GH_TOKEN }}
         run: |
-          git push https://x-access-token:${{ secrets.PERSONAL_GH_TOKEN }}@github.com/${{ github.repository }}.git
+          git push
           gh pr close ${{ github.event.number }}
           gh pr reopen ${{ github.event.number }}
