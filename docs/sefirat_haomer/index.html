@@ -32,13 +32,13 @@ A library for calculating the days of Sefirat HaOmer …" />
 <pre><code class="language-sh">$ conda install -c abrahammurciano sefirat-haomer
 </code></pre>
 <h2 id="links">Links</h2>
-<p><a href="https://abrahammurciano.github.io/python-sefirat-haomer/sefirat-haomer"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-C61C3E?style=for-the-badge&amp;logo=Read+the+Docs&amp;logoColor=%23FFFFFF"></a></p>
+<p><a href="https://abrahammurciano.github.io/python-sefirat-haomer"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-C61C3E?style=for-the-badge&amp;logo=Read+the+Docs&amp;logoColor=%23FFFFFF"></a></p>
 <p><a href="https://github.com/abrahammurciano/python-sefirat-haomer.git"><img alt="Source Code - GitHub" src="https://img.shields.io/badge/Source_Code-GitHub-181717?style=for-the-badge&amp;logo=GitHub&amp;logoColor=%23FFFFFF"></a></p>
-<p><a href="https://pypi.org/project/sefirat-haomer/"><img alt="PyPI - sefirat-haomer" src="https://img.shields.io/badge/PyPI-sefirat-haomer-006DAD?style=for-the-badge&amp;logo=PyPI&amp;logoColor=%23FFD242"></a></p>
-<p><a href="https://anaconda.org/abrahammurciano/sefirat-haomer"><img alt="Anaconda - sefirat-haomer" src="https://img.shields.io/badge/Anaconda-sefirat-haomer-44A833?style=for-the-badge&amp;logo=Anaconda&amp;logoColor=%23FFFFFF"></a></p>
+<p><a href="https://pypi.org/project/sefirat-haomer/"><img alt="PyPI - sefirat-haomer" src="https://img.shields.io/badge/PyPI-sefirat_haomer-006DAD?style=for-the-badge&amp;logo=PyPI&amp;logoColor=%23FFD242"></a></p>
+<p><a href="https://anaconda.org/abrahammurciano/sefirat-haomer"><img alt="Anaconda - sefirat-haomer" src="https://img.shields.io/badge/Anaconda-sefirat_haomer-44A833?style=for-the-badge&amp;logo=Anaconda&amp;logoColor=%23FFFFFF"></a></p>
 <h2 id="usage">Usage</h2>
 <p>This library provides three main classes. <code><a title="sefirat_haomer.OmerDay" href="#sefirat_haomer.OmerDay">OmerDay</a></code> which represents a single day (1 to 49) of Sefirat HaOmer (not bound to any particular year), <code><a title="sefirat_haomer.OmerDate" href="#sefirat_haomer.OmerDate">OmerDate</a></code> which represents a day of Sefirat HaOmer in a particular year, and <code><a title="sefirat_haomer.OmerCalendar" href="#sefirat_haomer.OmerCalendar">OmerCalendar</a></code> which is a collection of <code><a title="sefirat_haomer.OmerDate" href="#sefirat_haomer.OmerDate">OmerDate</a></code> objects for a particular year.</p>
-<p>For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see <a href="expamples/google_calendar.py">this example</a>. (Interestingly, this is why I wrote this library in the first place.)</p>
+<p>For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see <a href="expamples/google_calendar.py">this example</a>. (Interestingly, this is why I wrote this library in the first place, and you can import the resulting calendar <a href="https://calendar.google.com/calendar/u/0?cid=Mzc3OTA0MzIwMDY3Y2NiNjY3NmZjNDBmMzZmZjlkYzA5ZWQ3NzY0Nzg3YzYxOTNlMDg5Y2E3OWY5MmU4MzBhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t">by clicking this link</a>).</p>
 <h3 id="omerday"><code><a title="sefirat_haomer.OmerDay" href="#sefirat_haomer.OmerDay">OmerDay</a></code></h3>
 <p>Here are some examples of how to use the <code><a title="sefirat_haomer.OmerDay" href="#sefirat_haomer.OmerDay">OmerDay</a></code> class.</p>
 <pre><code class="language-python">&gt;&gt;&gt; from sefirat_haomer import OmerDay
@@ -205,7 +205,7 @@ False
 </dd>
 <dt id="sefirat_haomer.OmerDate"><code class="flex name class">
 <span>class <span class="ident">OmerDate</span></span>
-<span>(</span><span>day: int | typing.SupportsInt, *, hebrew_year: int | None = None, gregorian_year: int | None = None)</span>
+<span>(</span><span>day: <class 'SupportsInt'>, *, hebrew_year: int | None = None, gregorian_year: int | None = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>This class represents a date of the Omer on a certain year.</p>
@@ -271,7 +271,7 @@ False
 </dd>
 <dt id="sefirat_haomer.OmerDay"><code class="flex name class">
 <span>class <span class="ident">OmerDay</span></span>
-<span>(</span><span>day: int | typing.SupportsInt)</span>
+<span>(</span><span>day: <class 'SupportsInt'>)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>This class simply represents a day in the Omer count. Essentially it is just contains a number from 1 to 49.</p>

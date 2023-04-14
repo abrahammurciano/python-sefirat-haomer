@@ -22,7 +22,7 @@ class Text:
 
     __slots__ = ("day", "_laomer_at_end")
 
-    def __init__(self, day: int | SupportsInt, laomer_at_end: bool = False):
+    def __init__(self, day: SupportsInt, laomer_at_end: bool = False):
         self.day = int(day)
         self._laomer_at_end = laomer_at_end
         assert self.TEXTS is not None, "TEXTS must be defined in the subclass."

@@ -1,4 +1,5 @@
 import re
+from typing import SupportsInt
 
 from .text import Text
 
@@ -66,7 +67,9 @@ class HebrewText(Text):
 
     __slots__ = ("_vowels",)
 
-    def __init__(self, day: int, laomer_at_end: bool = False, vowels: bool = False):
+    def __init__(
+        self, day: SupportsInt, laomer_at_end: bool = False, vowels: bool = False
+    ):
         super().__init__(day, laomer_at_end)
         self._vowels = vowels
 

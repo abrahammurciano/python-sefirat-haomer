@@ -13,19 +13,19 @@ $ conda install -c abrahammurciano sefirat-haomer
 
 ## Links
 
-[![Documentation](https://img.shields.io/badge/Documentation-C61C3E?style=for-the-badge&logo=Read+the+Docs&logoColor=%23FFFFFF)](https://abrahammurciano.github.io/python-sefirat-haomer/sefirat-haomer)
+[![Documentation](https://img.shields.io/badge/Documentation-C61C3E?style=for-the-badge&logo=Read+the+Docs&logoColor=%23FFFFFF)](https://abrahammurciano.github.io/python-sefirat-haomer)
 
 [![Source Code - GitHub](https://img.shields.io/badge/Source_Code-GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=%23FFFFFF)](https://github.com/abrahammurciano/python-sefirat-haomer.git)
 
-[![PyPI - sefirat-haomer](https://img.shields.io/badge/PyPI-sefirat-haomer-006DAD?style=for-the-badge&logo=PyPI&logoColor=%23FFD242)](https://pypi.org/project/sefirat-haomer/)
+[![PyPI - sefirat-haomer](https://img.shields.io/badge/PyPI-sefirat_haomer-006DAD?style=for-the-badge&logo=PyPI&logoColor=%23FFD242)](https://pypi.org/project/sefirat-haomer/)
 
-[![Anaconda - sefirat-haomer](https://img.shields.io/badge/Anaconda-sefirat-haomer-44A833?style=for-the-badge&logo=Anaconda&logoColor=%23FFFFFF)](https://anaconda.org/abrahammurciano/sefirat-haomer)
+[![Anaconda - sefirat-haomer](https://img.shields.io/badge/Anaconda-sefirat_haomer-44A833?style=for-the-badge&logo=Anaconda&logoColor=%23FFFFFF)](https://anaconda.org/abrahammurciano/sefirat-haomer)
 
 ## Usage
 
 This library provides three main classes. `OmerDay` which represents a single day (1 to 49) of Sefirat HaOmer (not bound to any particular year), `OmerDate` which represents a day of Sefirat HaOmer in a particular year, and `OmerCalendar` which is a collection of `OmerDate` objects for a particular year.
 
-For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see [this example](expamples/google_calendar.py). (Interestingly, this is why I wrote this library in the first place.)
+For an actual example of how this library was used to generate Google Calendar events for the next 100 years, see [this example](expamples/google_calendar.py). (Interestingly, this is why I wrote this library in the first place, and you can import the resulting calendar [by clicking this link](https://calendar.google.com/calendar/u/0?cid=Mzc3OTA0MzIwMDY3Y2NiNjY3NmZjNDBmMzZmZjlkYzA5ZWQ3NzY0Nzg3YzYxOTNlMDg5Y2E3OWY5MmU4MzBhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t)).
 
 ### `OmerDay`
 
