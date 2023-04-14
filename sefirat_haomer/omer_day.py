@@ -15,7 +15,7 @@ class OmerDay:
 
     __slots__ = ("_day",)
 
-    def __init__(self, day: int | SupportsInt) -> None:
+    def __init__(self, day: SupportsInt) -> None:
         self._day = int(day)
         if not 1 <= self._day <= 49:
             raise ValueError("Omer day must be between 1 and 49")

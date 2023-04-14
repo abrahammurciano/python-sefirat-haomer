@@ -22,7 +22,7 @@ class OmerCalendar:
         self._hebrew_year = _hebrew_year(hebrew_year, gregorian_year)
 
     @overload
-    def __getitem__(self, day: int | SupportsInt) -> OmerDate:
+    def __getitem__(self, day: SupportsInt) -> OmerDate:
         """Get an OmerDate for a given day."""
         ...
 
@@ -31,7 +31,7 @@ class OmerCalendar:
         """Get a list of OmerDates for a given slice."""
         ...
 
-    def __getitem__(self, day: int | SupportsInt | slice) -> OmerDate | list[OmerDate]:
+    def __getitem__(self, day: SupportsInt | slice) -> OmerDate | list[OmerDate]:
         if isinstance(day, slice):
             return [self[i] for i in range(*day.indices(49))]
         index = int(day)

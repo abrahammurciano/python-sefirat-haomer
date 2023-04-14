@@ -21,7 +21,7 @@ class OmerDate(OmerDay):
 
     def __init__(
         self,
-        day: int | SupportsInt,
+        day: SupportsInt,
         *,
         hebrew_year: int | None = None,
         gregorian_year: int | None = None,
