@@ -49,6 +49,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GH_TOKEN }}
         run: |
-          git push
+          git push https://x-access-token:${{ secrets.PERSONAL_GH_TOKEN }}@github.com/${{ github.repository }}.git
           gh pr close ${{ github.event.number }}
           gh pr reopen ${{ github.event.number }}
