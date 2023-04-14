@@ -1,24 +1,35 @@
-from dataclasses import dataclass
-
-from .weeks_and_days import WeeksAndDays
+from typing import Iterator
 
 
-@dataclass
 class OmerDay:
-    """This class simply represents a day in the Omer count. Essentially it is just contains a number from 1 to 49."""
+    """This class simply represents a day in the Omer count. Essentially it is just contains a number from 1 to 49.
 
-    day: int
+    Args:
+        day: The day of the Omer. Must be between 1 and 49.
 
-    def __post_init__(self):
-        if not 1 <= self.day <= 49:
+    Raises:
+        ValueError: If the day is not between 1 and 49.
+    """
+
+    def __init__(self, day: int) -> None:
+        if not 1 <= day <= 49:
             raise ValueError("Omer day must be between 1 and 49")
+        self._day = day
 
-    def weeks_and_days(self) -> WeeksAndDays:
-        """The number of weeks and days in the Omer count.
+    @property
+    def day(self) -> int:
+        """The day of the Omer."""
+        return self._day
 
-        Examples:
-            >>> weeks, days = OmerDay(33).weeks_and_days
-            >>> weeks = OmerDay(33).weeks_and_days.weeks
-            >>> days = OmerDay(33).weeks_and_days.days
-        """
-        return WeeksAndDays(self.day)
+    @property
+    def weeks(self) -> int:
+        """The number of complete weeks in the total number of days."""
+        return self.day // 7
+
+    @property
+    def days(self) -> int:
+        """The number of days in the total number of days that are not part of a complete week."""
+        return self.day % 7
+
+    def __iter__(self) -> Iterator[int]:
+        return iter(divmod(self.day, 7))
