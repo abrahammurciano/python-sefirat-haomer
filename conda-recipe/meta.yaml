@@ -7,12 +7,12 @@ source:
 
 requirements:
   build:
-    - python >=3.9
+    - python >=3.10
     - pip
     - poetry
 
   run:
-    - python >=3.9
+    - python >=3.10
 
 build:
   script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed ."
