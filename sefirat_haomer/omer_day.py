@@ -41,6 +41,9 @@ class OmerDay:
     def __iter__(self) -> Iterator[int]:
         return iter(divmod(self.day, 7))
 
+    def __str__(self) -> str:
+        return f"Omer day {self.day}"
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.day})"
 

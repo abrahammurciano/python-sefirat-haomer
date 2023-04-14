@@ -16,12 +16,21 @@ def test_init():
 
 
 @pytest.mark.parametrize(
-    "index", [0, 1, 7, 8, 14, 15, 21, 22, 28, 29, 35, 36, 42, 43, 48]
+    "index, day",
+    [
+        (0, 1),
+        (1, 2),
+        (32, 33),
+        (48, 49),
+        (-1, 49),
+        (-2, 48),
+        (-49, 1),
+    ],
 )
-def test_get_item(omer_calendars: tuple[OmerCalendar, int], index: int):
+def test_get_item(omer_calendars: tuple[OmerCalendar, int], index: int, day: int):
     """Test that the OmerCalendar can be indexed."""
     omer_calendar, hebrew_year = omer_calendars
-    assert omer_calendar[index] == OmerDate(index + 1, hebrew_year=hebrew_year)
+    assert omer_calendar[index] == OmerDate(day, hebrew_year=hebrew_year)
 
 
 @pytest.mark.parametrize(

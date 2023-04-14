@@ -60,6 +60,9 @@ class OmerDate(OmerDay):
         """The Gregorian date of the Omer."""
         return self.hebrew.to_pydate()
 
+    def __str__(self) -> str:
+        return f"{super().__str__()} of year {self._hebrew_year}"
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.day}, hebrew_year={self._hebrew_year})"
 

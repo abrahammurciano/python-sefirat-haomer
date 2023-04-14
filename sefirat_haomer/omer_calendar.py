@@ -34,7 +34,10 @@ class OmerCalendar:
     def __getitem__(self, day: int | SupportsInt | slice) -> OmerDate | list[OmerDate]:
         if isinstance(day, slice):
             return [self[i] for i in range(*day.indices(49))]
-        return OmerDate(int(day) + 1, hebrew_year=self._hebrew_year)
+        index = int(day)
+        return OmerDate(
+            index + 1 if index >= 0 else 50 + index, hebrew_year=self._hebrew_year
+        )
 
     def __iter__(self) -> Iterator[OmerDate]:
         """Iterate over all the Omer dates in the calendar."""
