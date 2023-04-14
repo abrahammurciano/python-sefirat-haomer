@@ -7,9 +7,7 @@ on:
 jobs:
   docs_and_format:
     runs-on: ubuntu-latest
-
     steps:
-
       # Set up environment
       - uses: actions/checkout@v3
         with:
@@ -43,11 +41,11 @@ jobs:
       # Push changes if necessary
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=commits::$(git log @{upstream}.. --oneline | wc -l)
+        run: echo "commits=$(git log @{upstream}.. --oneline | wc -l)" >> $GITHUB_OUTPUT
       - name: Push changes
         if: steps.git-check.outputs.commits != '0'
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GH_TOKEN }}
         run: |
           git push
           gh pr close ${{ github.event.number }}
