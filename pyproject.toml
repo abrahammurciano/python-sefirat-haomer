@@ -12,6 +12,7 @@ keywords = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
+pyluach = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
@@ -27,3 +28,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
 exclude = [".venv", "venv"]
+
+[[tool.mypy.overrides]]
+module = ["pyluach.*"]
+ignore_missing_imports = true

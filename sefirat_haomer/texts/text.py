@@ -1,4 +1,4 @@
-from typing import Sequence
+from typing import Sequence, SupportsInt
 
 
 class Text:
@@ -11,7 +11,7 @@ class Text:
     - `END` - The text at the end of each text. Optional, defaults to `":"`.
 
     Args:
-        int: The day of the Omer count.
+        day: The day of the Omer count.
         laomer_at_end: Whether to put the `LAOMER` before the `END` always. Defaults to False.
     """
 
@@ -20,8 +20,10 @@ class Text:
     PAUSE: str = ","
     END: str = ":"
 
-    def __init__(self, day: int, laomer_at_end: bool = False):
-        self.day = day
+    __slots__ = ("day", "_laomer_at_end")
+
+    def __init__(self, day: int | SupportsInt, laomer_at_end: bool = False):
+        self.day = int(day)
         self._laomer_at_end = laomer_at_end
         assert self.TEXTS is not None, "TEXTS must be defined in the subclass."
         assert self.LAOMER is not None, "LAOMER must be defined in the subclass."

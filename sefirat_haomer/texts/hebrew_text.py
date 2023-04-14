@@ -64,6 +64,8 @@ class HebrewText(Text):
     )
     LAOMER = "לָעֹמֶר"
 
+    __slots__ = ("_vowels",)
+
     def __init__(self, day: int, laomer_at_end: bool = False, vowels: bool = False):
         super().__init__(day, laomer_at_end)
         self._vowels = vowels
